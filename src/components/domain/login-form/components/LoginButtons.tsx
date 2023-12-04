@@ -17,7 +17,7 @@ const LoginButtons = ({
 }: LoginButtonsProps) => {
   return (
     <section className="flex flex-col gap-2">
-      <KakaoLoginButton onClickButton={kakaoLoginHandler} />
+      {/* <KakaoLoginButton onClickButton={kakaoLoginHandler} /> */}
       <GoogleLoginButton onClickButton={googleLoginHandler} />
     </section>
   )
