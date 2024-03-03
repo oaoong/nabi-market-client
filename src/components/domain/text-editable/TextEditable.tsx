@@ -67,9 +67,11 @@ const TextEditable = ({
       />
       <Button
         onClick={onSubmit}
+        onKeyDown={(e) => e.key === 'Enter' && onSubmit()}
         variant={isEditing ? 'primary' : null}
         size={isEditing ? 'sm' : 'icon_sm'}
         className={cn(!isEditing && 'absolute right-0 cursor-pointer')}
+        tabIndex={0}
         asChild
       >
         {isEditing ? (
