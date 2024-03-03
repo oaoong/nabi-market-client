@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import SwiperCore from 'swiper'
 import 'swiper/css'
@@ -18,12 +19,8 @@ type PopularCardSliderProps = {
 }
 
 const PopularCardSlider = ({ cardData }: PopularCardSliderProps) => {
-  const router = useRouter()
   SwiperCore.use([Navigation, Autoplay])
 
-  const handleClick = (cardId: number) => {
-    router.push(`/cards/${cardId}`)
-  }
   return (
     <div className="popular-card-slider">
       <Swiper
@@ -35,18 +32,19 @@ const PopularCardSlider = ({ cardData }: PopularCardSliderProps) => {
       >
         {cardData.cardList.map((v) => (
           <SwiperSlide key={v.cardId}>
-            <Image
-              width={0}
-              height={0}
-              alt="sliderImage"
-              src={v.thumbnail}
-              style={{ width: '100%' }}
-              quality={75}
-              layout="responsive"
-              onClick={() => handleClick(v.cardId)}
-              loading="eager"
-              sizes="(max-width: 640px) 50vw, 480px"
-            />
+            <Link href={`/cards/${v.cardId}`}>
+              <Image
+                width={0}
+                height={0}
+                alt="sliderImage"
+                src={v.thumbnail}
+                style={{ width: '100%' }}
+                quality={75}
+                layout="responsive"
+                loading="eager"
+                sizes="(max-width: 640px) 50vw, 480px"
+              />
+            </Link>
             <div className="flex flex-col items-start p-2 justify-center opacity-40 bg-black rounded-b-[5px] text-white w-full absolute inset-x-0 bottom-0 max-w-[240px] left-2/4 translate-x-[-50%] ">
               <p className={`${TYPOGRAPHY.title}`}>{v.itemName}</p>
               <p className={`${TYPOGRAPHY.description}`}>
