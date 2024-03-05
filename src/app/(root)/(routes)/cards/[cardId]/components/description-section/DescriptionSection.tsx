@@ -1,5 +1,6 @@
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 import koLocale from 'date-fns/locale/ko'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import Badge from '@/components/ui/badge'
 import AppPath from '@/config/appPath'
@@ -72,14 +73,11 @@ const DescriptionSection = ({
             TYPOGRAPHY.description,
           )}
         >
-          <u
-            className="cursor-pointer"
-            onClick={() =>
-              router.push(`${AppPath.cards()}?${getQueryParams({ category })}`)
-            }
-          >
-            {getValueByKey(CATEGORY_OBJS, category)}
-          </u>
+          <Link href={`${AppPath.cards()}?${getQueryParams({ category })}`}>
+            <u className="cursor-pointer">
+              {getValueByKey(CATEGORY_OBJS, category)}
+            </u>
+          </Link>
         </p>
         <p className={cn('text-text-secondary-color', TYPOGRAPHY.description)}>
           {formatDistanceToNow(new Date(createdAt), {
