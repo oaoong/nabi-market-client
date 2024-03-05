@@ -1,6 +1,7 @@
 'use client'
 
 import Cookies from 'js-cookie'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Avatar, AvatarImage } from '@/components/ui/avatar'
 import Button from '@/components/ui/button'
@@ -17,8 +18,6 @@ import { DEFAULT_PROFILE_IMG } from '@/constants/image'
 import apiClient from '@/services/apiClient'
 
 const AvatarWithDropdown = ({ imageUrl }: { imageUrl?: string }) => {
-  const router = useRouter()
-
   const onClickLogout = () => {
     Cookies.remove(Environment.tokenName())
     Cookies.remove(Environment.refreshTokenName())
@@ -40,21 +39,15 @@ const AvatarWithDropdown = ({ imageUrl }: { imageUrl?: string }) => {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="absolute -right-5">
         <DropdownMenuGroup>
-          <DropdownMenuItem
-            onClick={() => {
-              router.push(AppPath.mypage())
-            }}
-          >
-            마이페이지
+          <Link href={AppPath.mypage()}>
+            <DropdownMenuItem>마이페이지</DropdownMenuItem>
+          </Link>
+          <Link href={AppPath.newCard()}>
+            <DropdownMenuItem>새 물건 등록하기</DropdownMenuItem>
+          </Link>
+          <DropdownMenuItem onClick={onClickLogout} tabIndex={0}>
+            로그아웃
           </DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={() => {
-              router.push(AppPath.newCard())
-            }}
-          >
-            새 물건 등록하기
-          </DropdownMenuItem>
-          <DropdownMenuItem onClick={onClickLogout}>로그아웃</DropdownMenuItem>
         </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>

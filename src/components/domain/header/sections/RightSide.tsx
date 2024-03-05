@@ -13,24 +13,6 @@ type RightSideProps = {
   currentUser: User | null
 }
 
-// const getUserNotificationCount = async () => {
-//   try {
-//     const token = getServerCookie()
-//     const res = await apiClient.get(
-//       ApiEndPoint.getNotificationCount(),
-//       {
-//         cache: 'no-store',
-//       },
-//       {
-//         Authorization: `${token}`,
-//       },
-//     )
-//     return res.data.unReadCount
-//   } catch (e) {
-//     return 0
-//   }
-// }
-
 const RightSide = ({ isLoggedIn, currentUser }: RightSideProps) => {
   const { data } = useNotificationCountQuery({ isLoggedIn })
   const router = useRouter()

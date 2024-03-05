@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import Button from '@/components/ui/button'
 import {
@@ -14,8 +15,6 @@ import AppPath from '@/config/appPath'
 import Assets from '@/config/assets'
 
 const MenuButton = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
-  const router = useRouter()
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -25,36 +24,20 @@ const MenuButton = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuGroup>
-          <DropdownMenuItem
-            onClick={() => {
-              router.push(AppPath.cards())
-            }}
-          >
-            전체 물건 보기
-          </DropdownMenuItem>
+          <Link href={AppPath.cards()}>
+            <DropdownMenuItem>전체 물건 보기</DropdownMenuItem>
+          </Link>
           {isLoggedIn && (
             <>
-              <DropdownMenuItem
-                onClick={() => {
-                  router.push(AppPath.myCards())
-                }}
-              >
-                내 물건 목록
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                onClick={() => {
-                  router.push(AppPath.myDibs())
-                }}
-              >
-                내 찜 목록
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                onClick={() => {
-                  router.push(AppPath.chatRooms())
-                }}
-              >
-                채팅 목록
-              </DropdownMenuItem>
+              <Link href={AppPath.myCards()}>
+                <DropdownMenuItem>내 물건 목록</DropdownMenuItem>
+              </Link>
+              <Link href={AppPath.myDibs()}>
+                <DropdownMenuItem>내 찜 목록</DropdownMenuItem>
+              </Link>
+              <Link href={AppPath.chatRooms()}>
+                <DropdownMenuItem>채팅 목록</DropdownMenuItem>
+              </Link>
             </>
           )}
         </DropdownMenuGroup>
