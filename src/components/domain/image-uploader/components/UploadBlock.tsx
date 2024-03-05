@@ -26,7 +26,11 @@ const UploadBlock = ({
     <>
       <div
         className="relative flex justify-center w-20 h-20 align-middle border rounded-lg hover:cursor-pointer hover:brightness-90"
+        tabIndex={0}
         onClick={onClickBlock}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') onClickBlock()
+        }}
       >
         <Image src={Assets.plusIcon} alt={'upload photo'} />
         <span

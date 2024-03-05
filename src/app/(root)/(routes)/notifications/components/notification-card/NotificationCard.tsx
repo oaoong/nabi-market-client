@@ -27,7 +27,15 @@ const NotificationCard = ({
   }
 
   return (
-    <Card size={'xs'} className="p-4" onClick={handleReadNotification}>
+    <Card
+      size={'xs'}
+      className="p-4"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter') handleReadNotification()
+      }}
+      onClick={handleReadNotification}
+    >
       <CardFlex
         justify={'between'}
         align={'center'}

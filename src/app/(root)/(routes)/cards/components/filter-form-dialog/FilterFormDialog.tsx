@@ -67,6 +67,10 @@ const FilterFormDialog = () => {
             />
             <DialogDescription
               className={hasNoFilter ? 'text-primary-color' : ''}
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') openModal()
+              }}
               onClick={openModal}
             >
               필터
